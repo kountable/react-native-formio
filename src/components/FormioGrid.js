@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Button, Text} from 'react-native';
-import Icon from 'react-native-vector-icons/dist/FontAwesome';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import PropTypes from 'prop-types';
 import Formiojs from '../formio';
 import FormioUtils from '../formio/utils';

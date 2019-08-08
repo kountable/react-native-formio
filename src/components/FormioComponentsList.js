@@ -6,6 +6,7 @@ import {FormioComponents} from '../factories';
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
+    height: '100%'
   }
 });
 

@@ -2,8 +2,8 @@ import React from 'react';
 import {View, Image, Text, Modal} from 'react-native';
 import {Button} from 'react-native-elements';
 import ValueComponent from '../sharedComponents/Value';
-import SignatureCapture from 'react-native-signature-capture';
-import DeviceInfo from 'react-native-device-info';
+//import SignatureCapture from 'react-native-signature-capture';
+import DeviceInfo from '../../../adaptors/device-info-adaptor';
 import styles from './styles';
 
 const isTablet = DeviceInfo.isTablet();
@@ -118,22 +118,27 @@ export default class Signature extends ValueComponent {
                 backgroundColor={'transparent'}
               />
             </View>}
-            <SignatureCapture
-              style={[
-                styles.signaturePad, {
-                  backgroundColor: component.backgroundColor,
-                }]}
-              ref={(ref) => {
-                  this.signature = ref;
-              }}
-              onSaveEvent={this.onEnd}
-              saveImageFileInExtStorage={false}
-              showNativeButtons={!isTablet ? true : false}
-              rotateClockwise={!isTablet}
-              minStrokeWidth={2}
-              maxStrokeWidth={8}
-              viewMode={isTablet ? 'portrait' : 'landscape'}
-            />
+            {
+              /*
+               TODO: find signature capture lib compatible with Expo
+               <SignatureCapture
+               style={[
+               styles.signaturePad, {
+               backgroundColor: component.backgroundColor,
+               }]}
+               ref={(ref) => {
+               this.signature = ref;
+               }}
+               onSaveEvent={this.onEnd}
+               saveImageFileInExtStorage={false}
+               showNativeButtons={!isTablet ? true : false}
+               rotateClockwise={!isTablet}
+               minStrokeWidth={2}
+               maxStrokeWidth={8}
+               viewMode={isTablet ? 'portrait' : 'landscape'}
+               />
+               */
+            }
             <View style={styles.modalFooter}>
               <Text style={styles.modalFooterText}>{component.footer}</Text>
               <Button

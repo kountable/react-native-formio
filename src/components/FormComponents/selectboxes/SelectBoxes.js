@@ -118,7 +118,7 @@ export default class SelectBox extends ValueComponent {
       label: {
         flexWrap: 'wrap',
         color: this.props.theme.Label.color,
-        fontSize: DeviceInfo.isTablet() ? this.props.theme.Label.fontSize : 12,
+        fontSize: 12,
       },
       mainElement: this.elementLayout(this.props.component.labelPosition),
       labelWrapper: {
@@ -129,7 +129,7 @@ export default class SelectBox extends ValueComponent {
         marginLeft: this.props.component.labelPosition === 'right-left' || this.props.component.labelPosition === 'right-right' ? 10 : 0,
       },
       descriptionText: {
-        fontSize: DeviceInfo.isTablet() ? 12 : 10,
+        fontSize: 10,
         marginLeft: 20,
         marginTop: 10,
       },

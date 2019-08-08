@@ -32,6 +32,7 @@ import Textarea from './textarea/Textarea';
 import TextField from './textfield/TextField';
 // import time from './time';
 // import well from './well';
+import Pdf from './pdf/Pdf'
 
 // FormioComponents.register('address', address);
 FormioComponents.register('button', Button);
@@ -49,7 +50,7 @@ FormioComponents.register('fieldset', Fieldset);
 // FormioComponents.register('file', file);
 // FormioComponents.register('hidden', hidden);
 FormioComponents.register('htmlelement', HtmlElement);
-// FormioComponents.register('number', number);
+ FormioComponents.register('number', TextField);
 FormioComponents.register('panel', Panel);
 // FormioComponents.register('password', password);
 // FormioComponents.register('phoneNumber', phoneNumber);
@@ -65,3 +66,4 @@ FormioComponents.register('textarea', Textarea);
 FormioComponents.register('textfield', TextField);
 // FormioComponents.register('time', time);
 // FormioComponents.register('well', well);
+FormioComponents.register('pdf', Pdf);

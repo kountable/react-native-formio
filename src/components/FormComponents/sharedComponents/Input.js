@@ -1,9 +1,9 @@
 import React from 'react';
 import MultiComponent from './Multi';
-import {StyleSheet} from 'react-native';
-import DeviceInfo from 'react-native-device-info';
-import {TextMask} from 'react-text-mask-hoc/ReactNative';
-import {clone} from 'lodash';
+import {StyleSheet, Platform} from 'react-native';
+import DeviceInfo from '../../../adaptors/device-info-adaptor';
+//import {TextMask} from 'react-text-mask-hoc/ReactNative';
+import {clone, assignIn} from 'lodash';
 import {FormInput} from 'react-native-elements';
 import PropTypes from 'prop-types';
 
@@ -103,17 +103,33 @@ export default class InputComponent extends MultiComponent {
 
   getSingleElement(value, index, error) {
     const themeStyle = this.props.theme.Input;
+    let inputStylesDict = {
+      color: themeStyle.color,
+      fontSize: themeStyle.fontSize,
+      lineHeight: themeStyle.lineHeight,
+    }
+
+    if (this.props.component.overlay) {
+      inputStylesDict = assignIn(inputStylesDict, {
+        width: this.props.component.overlay.width,
+        height: this.props.component.overlay.height,
+        left: this.props.component.overlay.left,
+        top: this.props.component.overlay.top,
+      })
+    } else {
+      inputStylesDict = assignIn(inputStylesDict, {
+        'flex': 1,
+        'borderWidth': 1,
+        'borderColor': '#ccc',
+        maxWidth: DeviceInfo.isTablet() ? 580 : 210
+      })
+    }
+
     const style = StyleSheet.create({
       container: {
         borderColor: error ? themeStyle.borderColorOnError : themeStyle.borderColor,
       },
-      input: {
-        color: themeStyle.color,
-        fontSize: themeStyle.fontSize,
-        lineHeight: themeStyle.lineHeight,
-        flex: 1,
-        maxWidth: DeviceInfo.isTablet() ? 580 : 210,
-      }
+      input: inputStylesDict
     });
 
     index = index || 0;
@@ -126,7 +142,7 @@ export default class InputComponent extends MultiComponent {
       id: component.key,
       'data-index': index,
       name: name,
-      shake: true,
+      shake: Platform.OS === 'web' ? 'true' : true,
       defaultValue: item,
       value: item,
       editable: !readOnly,
@@ -137,13 +153,15 @@ export default class InputComponent extends MultiComponent {
       ref: input => this.element = input
     };
 
-    if (mask || component.type === 'currency' || component.type === 'number') {
+    // TODO: Figure out how to fix react-text-mask-hoc/ReactNative
+    if (false || mask || component.type === 'currency' || component.type === 'number') {
       properties.inputMode = 'number';
       properties.mask = this.getInputMask(mask);
       properties.placeholderChar = '_';
       properties.guide = true;
 
-      return (<TextMask style={style.input} Component={FormInput} {...properties}/>);
+      return (<FormInput inputStyle={style.input} containerStyle={style.container} {...properties} />);
+      // return (<TextMask style={style.input} Component={FormInput} {...properties}/>);
     }
     else {
       return (<FormInput inputStyle={style.input} containerStyle={style.container} {...properties} />);

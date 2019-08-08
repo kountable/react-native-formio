@@ -63,7 +63,7 @@ export default class Button extends BaseComponent {
       buttonWidth = '100%';
     }
  else {
-      buttonWidth = DeviceInfo.isTablet() ? 250 : 150;
+      buttonWidth = 150;
     }
 
     const styles = StyleSheet.flatten({

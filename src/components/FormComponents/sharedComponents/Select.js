@@ -1,13 +1,13 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-import Icon from 'react-native-vector-icons/dist/FontAwesome';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import {Dropdown} from 'react-native-material-dropdown';
 import MultiSelect from 'react-native-multiple-select';
 import {FormLabel} from 'react-native-elements';
 import get from 'lodash/get';
 import isEqual from 'lodash/isEqual';
 import PropTypes from 'prop-types';
-import DeviceInfo from 'react-native-device-info';
+import DeviceInfo from '../../../adaptors/device-info-adaptor';
 import ValueComponent from './Value';
 import Tooltip from './Tooltip';
 import colors from '../../../defaultTheme/colors';

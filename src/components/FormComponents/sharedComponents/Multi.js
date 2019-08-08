@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import {View, StyleSheet} from 'react-native';
 import Tooltip from './Tooltip';
 import ValueComponent from './Value';
-import DeviceInfo from 'react-native-device-info';
+import DeviceInfo from '../../../adaptors/device-info-adaptor';
 import {
   Icon,
   Button,

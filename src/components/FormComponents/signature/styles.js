@@ -1,5 +1,5 @@
 import {StyleSheet} from  'react-native';
-import DeviceInfo from 'react-native-device-info';
+import DeviceInfo from '../../../adaptors/device-info-adaptor';
 
 const isTablet = DeviceInfo.isTablet();
 
